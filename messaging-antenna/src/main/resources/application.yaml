@@ -1,0 +1,19 @@
+debug: true
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://aws.connect.psdb.cloud:3306/hephaestus_foundary
+    username: 0krqbv3icpnnfxtrhe9d
+    password: pscale_pw_ULT2eMbzfi6VEb0ePH4pnOGL4zrF2sZPoxt5LBa6zgA
+    hikari:
+      keepalive-time: 30000
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQLDialect
+
