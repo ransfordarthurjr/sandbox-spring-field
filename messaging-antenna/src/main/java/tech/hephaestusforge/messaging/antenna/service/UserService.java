@@ -1,3 +1,4 @@
+/*
 package tech.hephaestusforge.messaging.antenna.service;
 
 import lombok.RequiredArgsConstructor;
@@ -53,3 +54,4 @@ public class UserService {
         return this.repository.searchUsers(searchTerm);
     }
 }
+*/

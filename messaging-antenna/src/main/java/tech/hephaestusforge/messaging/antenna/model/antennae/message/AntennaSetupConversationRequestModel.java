@@ -15,10 +15,9 @@ import java.util.List;
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Builder
-public class AntennaCreateConversationRequestModel {
+public class AntennaSetupConversationRequestModel {
     @JsonProperty("group_conversation")
     @SerializedName("group_conversation")
     private String groupConversation;
-
     List<String> participants;
 }

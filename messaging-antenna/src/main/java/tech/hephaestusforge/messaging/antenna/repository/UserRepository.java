@@ -1,3 +1,4 @@
+/*
 package tech.hephaestusforge.messaging.antenna.repository;
 
 import jakarta.persistence.EntityManager;
@@ -70,8 +71,13 @@ public class UserRepository implements UserRepositoryInterface {
             ));
         }};
 
-        criteriaQuery.where(predicates.toArray(new Predicate[0]));
+        criteriaQuery.where(predicates.toArray(new Predicate[0]))
+                .orderBy(
+                        criteriaBuilder.asc(user.get("firstname")),
+                        criteriaBuilder.asc(user.get("firstname"))
+                );
 
         return entityManager.createQuery(criteriaQuery).getResultList();
     }
 }
+*/

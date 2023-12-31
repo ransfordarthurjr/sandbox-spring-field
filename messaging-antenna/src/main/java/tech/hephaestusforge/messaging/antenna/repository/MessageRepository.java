@@ -1,3 +1,4 @@
+/*
 package tech.hephaestusforge.messaging.antenna.repository;
 
 import jakarta.transaction.Transactional;
@@ -15,3 +16,4 @@ public interface MessageRepository extends JpaRepository<MessageModel, String> {
     @Query(value = "SELECT msg FROM MessageModel msg WHERE msg.conversationId = :conversationId ORDER BY msg.timestamp ASC ")
     List<MessageModel> findMessagesByConversationId(@Param("conversationId") String conversationId);
 }
+*/

@@ -3,13 +3,12 @@ package tech.hephaestusforge.messaging.antenna.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import tech.hephaestusforge.messaging.antenna.model.antennae.message.*;
-import tech.hephaestusforge.messaging.antenna.model.antennae.user.AntennaCreateUserRequestModel;
-import tech.hephaestusforge.messaging.antenna.model.antennae.user.AntennaUsersRequestModel;
+import tech.hephaestusforge.messaging.antenna.model.antennae.message.AntennaCreateConversationParticipantsRequestModel;
+import tech.hephaestusforge.messaging.antenna.model.antennae.message.AntennaCreateConversationParticipantsResponseModel;
+import tech.hephaestusforge.messaging.antenna.model.antennae.message.AntennaCreateConversationResponseModel;
+import tech.hephaestusforge.messaging.antenna.model.antennae.message.AntennaSetupConversationRequestModel;
 import tech.hephaestusforge.messaging.antenna.model.datasource.ConversationModel;
 import tech.hephaestusforge.messaging.antenna.model.datasource.ConversationParticipantModel;
-import tech.hephaestusforge.messaging.antenna.model.datasource.MessageModel;
-import tech.hephaestusforge.messaging.antenna.model.datasource.UserModel;
 
 import java.util.List;
 
@@ -18,9 +17,10 @@ import java.util.List;
 @Slf4j
 public class ApplicationService {
     private final ConversationService conversation;
-    private final MessageService message;
-    private final UserService user;
+    // private final MessageService message;
+    // private final UserService user;
 
+    /*
     public UserModel fetchUser(String username) {
         return this.user.fetchUser(username);
     }
@@ -36,13 +36,14 @@ public class ApplicationService {
     public List<UserModel> searchUsers(String searchTerm) {
         return this.user.searchUsers(searchTerm);
     }
+    */
 
     public ConversationModel fetchConversation(String conversationId) {
         return this.conversation.fetchConversation(conversationId);
     }
 
-    public AntennaCreateConversationResponseModel createConversation(AntennaCreateConversationRequestModel request) {
-        return this.conversation.createConversation(request);
+    public AntennaCreateConversationResponseModel setupConversation(AntennaSetupConversationRequestModel request) {
+        return this.conversation.setupConversation(request);
     }
 
     public List<ConversationParticipantModel> fetchConversationParticipants(String conversationId) {
@@ -53,6 +54,7 @@ public class ApplicationService {
         return this.conversation.addConversationParticipants(request);
     }
 
+    /*
     public List<MessageModel> fetchMessagesByConversation(String conversationId) {
         return this.message.fetchMessagesByConversation(conversationId);
     }
@@ -60,4 +62,5 @@ public class ApplicationService {
     public AntennaCreateMessageResponseModel createMessage(AntennaCreateMessageRequestModel request) {
         return this.message.createMessage(request);
     }
+    */
 }

@@ -8,13 +8,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import tech.hephaestusforge.messaging.antenna.model.antennae.message.*;
-import tech.hephaestusforge.messaging.antenna.model.antennae.user.AntennaCreateUserRequestModel;
-import tech.hephaestusforge.messaging.antenna.model.antennae.user.AntennaUsersRequestModel;
+import tech.hephaestusforge.messaging.antenna.model.antennae.message.AntennaCreateConversationParticipantsRequestModel;
+import tech.hephaestusforge.messaging.antenna.model.antennae.message.AntennaCreateConversationParticipantsResponseModel;
+import tech.hephaestusforge.messaging.antenna.model.antennae.message.AntennaCreateConversationResponseModel;
+import tech.hephaestusforge.messaging.antenna.model.antennae.message.AntennaSetupConversationRequestModel;
 import tech.hephaestusforge.messaging.antenna.model.datasource.ConversationModel;
 import tech.hephaestusforge.messaging.antenna.model.datasource.ConversationParticipantModel;
-import tech.hephaestusforge.messaging.antenna.model.datasource.MessageModel;
-import tech.hephaestusforge.messaging.antenna.model.datasource.UserModel;
 import tech.hephaestusforge.messaging.antenna.service.ApplicationService;
 import tech.hephaestusforge.messaging.antenna.util.TypeAdapterUtil;
 
@@ -33,6 +32,7 @@ public class ApplicationController {
             .create();
     private final ApplicationService service;
 
+    /*
     @GetMapping(value = "/user", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserModel> fetchUser(@RequestParam("username") String username) {
         log.info("\nIncoming User:::username:{}", username);
@@ -80,6 +80,7 @@ public class ApplicationController {
                 .status(response != null ? HttpStatus.OK : HttpStatus.EXPECTATION_FAILED)
                 .body(response);
     }
+    */
 
     @GetMapping(value = "/conversation", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ConversationModel> fetchConversation(@RequestParam("id") String conversationId) {
@@ -94,6 +95,19 @@ public class ApplicationController {
     }
 
     @PostMapping(value = "/conversation", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<AntennaCreateConversationResponseModel> setupConversation(@RequestBody AntennaSetupConversationRequestModel request) {
+        log.info("\nIncoming AntennaSetupConversationRequestModel:::\n{}\n", this.gson.toJson(request));
+
+        AntennaCreateConversationResponseModel response = this.service.setupConversation(request);
+        log.info("\nOutgoing AntennaCreateConversationResponseModel:::\n{}\n", this.gson.toJson(response));
+
+        return ResponseEntity
+                .status(response != null ? HttpStatus.CREATED : HttpStatus.EXPECTATION_FAILED)
+                .body(response);
+    }
+
+    /*
+    @PostMapping(value = "/conversation", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AntennaCreateConversationResponseModel> createConversation(@RequestBody AntennaCreateConversationRequestModel request) {
         log.info("\nIncoming AntennaCreateConversationRequestModel:::\n{}\n", this.gson.toJson(request));
 
@@ -104,6 +118,7 @@ public class ApplicationController {
                 .status(response != null ? HttpStatus.CREATED : HttpStatus.EXPECTATION_FAILED)
                 .body(response);
     }
+    */
 
     @GetMapping(value = "/conversation/participants", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<ConversationParticipantModel>> fetchConversationParticipants(@RequestParam("conversation_id") String conversationId) {
@@ -129,6 +144,7 @@ public class ApplicationController {
                 .body(response);
     }
 
+    /*
     @GetMapping(value = "/messages", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<MessageModel>> fetchMessagesByConversation(@RequestParam("conversation_id") String conversationId) {
         log.info("\nIncoming Messages:::Id:{}", conversationId);
@@ -152,4 +168,5 @@ public class ApplicationController {
                 .status(response != null ? HttpStatus.CREATED : HttpStatus.EXPECTATION_FAILED)
                 .body(response);
     }
+     */
 }

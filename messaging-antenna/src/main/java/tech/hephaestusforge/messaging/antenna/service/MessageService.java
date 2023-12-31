@@ -1,3 +1,4 @@
+/*
 package tech.hephaestusforge.messaging.antenna.service;
 
 import lombok.RequiredArgsConstructor;
@@ -39,3 +40,4 @@ public class MessageService {
                 .build();
     }
 }
+*/
